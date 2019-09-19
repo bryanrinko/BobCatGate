@@ -17,7 +17,7 @@ const String SENSORUP = "up:";
 const int debounce = 250; // debounce latency in ms
 const int endDelay = 3000;
 
-char *myLoopStates[] = {"sensorINIT", "Ready", "Starting","Started", "Ending", "Ended"};
+char *myLoopStates[] = {"INIT", "Ready", "Starting","Started", "Ending", "Ended"};
 const int SENSORINIT = 0;
 const int READY = 1;
 const int STARTING = 2;
