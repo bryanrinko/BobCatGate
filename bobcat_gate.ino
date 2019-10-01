@@ -8,8 +8,8 @@
 #define NUM_DISPLAYS 2
 #define NUM_BUSES 1
 // I2C bus info
-uint8_t scl_list[NUM_BUSES] = {5};
-uint8_t sda_list[NUM_BUSES] = {6};
+uint8_t scl_list[NUM_BUSES] = {A5};
+uint8_t sda_list[NUM_BUSES] = {A4};
 int32_t speed_list[NUM_BUSES] = {1000000L};
 // OLED display info
 uint8_t bus_list[NUM_DISPLAYS] = {0,0}; // can be multiple displays per bus
