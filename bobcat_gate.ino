@@ -35,7 +35,7 @@ const int STARTED = 3;
 const int ENDING = 4;
 const int ENDED = 5;
 
-char *myBrand[] = {"BOBgate", "v0.07"};
+char *myBrand[] = {"BOBCATgates", "v0.08"};
 const int DEVICE_BRAND = 0;
 const int VERSION = 1;
 
