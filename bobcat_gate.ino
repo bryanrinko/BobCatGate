@@ -6,13 +6,13 @@
 #include <SoftwareSerial.h>
 
 #define NUM_DISPLAYS 2
-#define NUM_BUSES 2
+#define NUM_BUSES 1
 // I2C bus info
-uint8_t scl_list[NUM_BUSES] = {0xb5,0xb5}; //{9,9};
-uint8_t sda_list[NUM_BUSES] = {0xc6, 0xd7}; //{5,6};
-int32_t speed_list[NUM_BUSES] = {400000L, 400000L};
+uint8_t scl_list[NUM_BUSES] = {5};
+uint8_t sda_list[NUM_BUSES] = {6};
+int32_t speed_list[NUM_BUSES] = {1000000L};
 // OLED display info
-uint8_t bus_list[NUM_DISPLAYS] = {1,1}; // can be multiple displays per bus
+uint8_t bus_list[NUM_DISPLAYS] = {0,0}; // can be multiple displays per bus
 uint8_t addr_list[NUM_DISPLAYS] = {0x3c, 0x3d};
 uint8_t type_list[NUM_DISPLAYS] = {OLED_128x64, OLED_128x64};
 uint8_t flip_list[NUM_DISPLAYS] = {0,0};
