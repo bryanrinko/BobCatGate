@@ -47,18 +47,20 @@ void setup() {
   // Start Serial
   Serial.begin(9600);
 
+  //Initialize displays
   Multi_I2CInit(sda_list, scl_list, speed_list, NUM_BUSES);
   Multi_OLEDInit(bus_list, addr_list, type_list, flip_list, invert_list, NUM_DISPLAYS);
   
-  myOLED2Gate(myBrand[DEVICE_BRAND],-1, "Loading",myBrand[VERSION]);
-  Serial.println(myBrand[DEVICE_BRAND]);
-  Serial.println("Loading");
-  Serial.println(myBrand[VERSION]);
+  //Load the displays
+  myOLED2Gate(myBrand[DEVICE_BRAND],1, "Loading",myBrand[VERSION]);
+  myOLED2Gate(myBrand[DEVICE_BRAND],2, "Loading",myBrand[VERSION]);
   delay(2000);
 
+  //Initialize input pins for sensor Receivers (Gate1 and Gate2)
   pinMode(GATE1RELAY, INPUT_PULLUP);
   pinMode(GATE2RELAY, INPUT_PULLUP);
 
+  //Initialize internal state machine
   state[0] = myLoopStates[SENSORINIT];
   state[1] = myLoopStates[SENSORINIT];
 }
@@ -99,14 +101,13 @@ void evalState(int gateIndex,int gatePin){
 }
 
 void myOLED2Gate(char *header, int gate, char *lineText1, char *lineText2) {
-  Serial.print("GATE:");
+  //Expect these are also delivered to bluetooth
+  Serial.print(header);
+  Serial.print(" : GATE ");
   Serial.print(gate);
   Serial.print(" -> ");
-  if (gate == 1){
-     Serial.println(lineText1);
-  } else if (gate == 2){
-     Serial.println(lineText2);
-  }
+  Serial.println(lineText1);
+  Serial.println(lineText2);
   
   //Clear Display
   Multi_OLEDFill(gate-1, 0);
