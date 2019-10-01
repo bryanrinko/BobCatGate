@@ -1,8 +1,5 @@
-#include <Multi_BitBang.h>
-#include <Multi_OLED.h>
-//https://github.com/bitbank2/Multi_BitBang
-//https://github.com/bitbank2/Multi_OLED
-
+#include <Multi_BitBang.h>  //https://github.com/bitbank2/Multi_BitBang
+#include <Multi_OLED.h>     //https://github.com/bitbank2/Multi_OLED
 #include <SoftwareSerial.h>
 
 #define NUM_DISPLAYS 2
