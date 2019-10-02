@@ -92,7 +92,7 @@ void evalState(int gateIndex,int gatePin){
       state[gateIndex] = myLoopStates[ENDED];
       ElapsedTime[gateIndex] = EndTime[gateIndex] - StartTime[gateIndex];
       String finalTime = String(ElapsedTime[gateIndex] / 1000.0, 3);
-      myOLED2Gate(myBrand[DEVICE_BRAND],gateIndex+1, state[gateIndex], finalTime.c_str());
+      myOLED2Gate(myBrand[DEVICE_BRAND],gateIndex+1,finalTime.c_str(), state[gateIndex]);
     } else if(state[gateIndex] == myLoopStates[ENDED] && val == OPENSTATE && millis()>= EndTime[gateIndex]+endDelay){
       state[gateIndex] = myLoopStates[READY];
       myOLED2Gate(myBrand[DEVICE_BRAND],gateIndex+1,state[gateIndex], "");
@@ -111,7 +111,8 @@ void myOLED2Gate(char *header, int gate, char *lineText1, char *lineText2) {
   
   //Clear Display
   Multi_OLEDFill(gate-1, 0);
-  Multi_OLEDWriteString(gate-1, 0, 1, (char *)header, FONT_SMALL, 0);
-  Multi_OLEDWriteString(gate-1, 10, 18, (char *)lineText1, FONT_NORMAL, 0);
-  Multi_OLEDWriteString(gate-1, 10, 40, (char *)lineText2, FONT_LARGE, 0);
+
+  Multi_OLEDWriteString(gate-1, 0, 0, (char *)header, FONT_SMALL, 0);
+  Multi_OLEDWriteString(gate-1, 5, 2, (char *)lineText1, FONT_LARGE, 0);
+  Multi_OLEDWriteString(gate-1, 5, 7, (char *)lineText2, FONT_NORMAL, 0);
 }
