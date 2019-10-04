@@ -2,6 +2,9 @@
 #include <Multi_OLED.h>     //https://github.com/bitbank2/Multi_OLED
 #include <SoftwareSerial.h>
 
+//TODO: add color LEDs to signal the skaters
+//https://randomnerdtutorials.com/guide-for-ws2812b-addressable-rgb-led-strip-with-arduino/
+
 #define NUM_DISPLAYS 2
 #define NUM_BUSES 2
 // I2C bus info
