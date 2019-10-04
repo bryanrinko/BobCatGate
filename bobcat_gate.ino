@@ -2,9 +2,13 @@
 #include <Multi_OLED.h>     //https://github.com/bitbank2/Multi_OLED
 #include <SoftwareSerial.h>
 
+//Brand & version.  Up at top so easy to update
+char *myBrand[] = {"BOBCATgate", "v0.09"};
+
 //TODO: add color LEDs to signal the skaters
 //https://randomnerdtutorials.com/guide-for-ws2812b-addressable-rgb-led-strip-with-arduino/
 
+//Confgure OLED Displays (one for each gate/lane)
 #define NUM_DISPLAYS 2
 #define NUM_BUSES 2
 // I2C bus info
@@ -18,8 +22,10 @@ uint8_t type_list[NUM_DISPLAYS] = {OLED_128x64, OLED_128x64};
 uint8_t flip_list[NUM_DISPLAYS] = {0,0};
 uint8_t invert_list[NUM_DISPLAYS] = {0,0};
 
+//Configure Bluetooth transmitter
 SoftwareSerial mySerial(0, 1); // RX, TX
 
+//Configure gate data structures
 const int GATE1RELAY=7;
 const int GATE2RELAY=8;
 
@@ -35,10 +41,6 @@ const int STARTED = 3;
 const int ENDING = 4;
 const int ENDED = 5;
 
-char *myBrand[] = {"BOBCATgate", "v0.09"};
-const int DEVICE_BRAND = 0;
-const int VERSION = 1;
-
 int flag = 0;
 char *state[] = {"",""};
 
@@ -47,15 +49,6 @@ unsigned long EndTime[] = {0,0};
 unsigned long ElapsedTime[] = {0,0};
 
 char * header;
-
-char * buildHeader()
-{
-  char * buf = (char *) malloc (666);
-  strcpy (buf, myBrand[DEVICE_BRAND]);
-  strcat (buf, " : ");
-  strcat (buf, myBrand[VERSION]);
-  return buf;
-}  // end of buildHeader
 
 void setup() {
   // Start Serial
@@ -136,3 +129,12 @@ void myOLED2Gate(int gate, char *lineText1, char *lineText2) {
   Multi_OLEDWriteString(gate-1, 5, 2, (char *)lineText1, FONT_LARGE, 0);
   Multi_OLEDWriteString(gate-1, 5, 7, (char *)lineText2, FONT_NORMAL, 0);
 }
+
+char * buildHeader()
+{
+  char * buf = (char *) malloc (666);
+  strcpy (buf, myBrand[DEVICE_BRAND]);
+  strcat (buf, " : ");
+  strcat (buf, myBrand[VERSION]);
+  return buf;
+}  // end of buildHeader
